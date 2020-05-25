@@ -1,0 +1,47 @@
+from django.shortcuts import render
+from docx import *
+from . form import ResumeForm
+
+
+def parse(request):
+        completed = [ ]
+        file = request.FILES['filename']
+        doc = Document(file)
+        complete = []
+        for para in doc.paragraphs:
+            temp = " "
+            line = (para.text).split()
+            l=len(line)
+            for word in line:
+                if (word == ":"):
+                    ind = line.index(word)
+                    for i in range(ind+1,l):
+                        temp += line[i] + " "
+            complete.append(temp)
+        for itr in complete:
+            completed.append(itr.strip())
+
+        val ={'fname': completed[0],
+                  'lname': completed[1],
+                  'gmail': completed[2],
+                  'phno': completed[3],
+                  'street': completed[4],
+                  'state': completed[5],
+                  'country': completed[6],
+                  'pin': completed[7],
+                  'work': completed[8],
+                  'edu': completed[9],
+                  'skill': completed[10],
+                  'exp': completed[11]
+                  }
+
+        form=ResumeForm(val)
+        if form.is_valid():
+            form.save()
+
+        return render(request,'inside.html',val)
+def index(request):
+    return render(request,'index.html')
+
+
+# Create your views here.

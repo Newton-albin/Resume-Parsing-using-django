@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume parsed</title>
+    <style>
+	table,th,td{
+		border:1px solid black;
+		border-collapse : collapse;
+		    }
+		body{
+      background-image:url("/static/image/resumefirst.jpg");
+      background-repeat:no-repet;
+      background-attachment:fixed;
+      background-size:100% 100%;
+
+      }
+
+	</style>
+</head>
+<body>
+<form action="index" method="POST">
+    {% csrf_token %}
+
+<div style="background-color:Aqua;padding:10px 5px 15px;">
+    <h1 class="class" align="center">RESUME</h1><br /></div>
+
+<table style="width:100%">
+<tr>
+	<th>First Name</th>
+	<th><input id="first" type="text" name="firstnamee" value="{{ fname }}"><p></p>
+	</th>
+
+</tr>
+<tr>
+	<th>Last Name</th>
+	<th><input id="last" type="text" name="lastnamee" value="{{ lname }}"><p id="ln" style="color:red;"></p></th>
+</tr>
+<tr>
+	<th>Email Address</th>
+	<th><input id="email" type="text" name="emailaddress" value="{{ gmail }}"><p></p></th>
+</tr>
+<tr>
+	<th>Contact Number</th>
+	<th><input id="contact" type="text" name="contactnumber" value="{{ phno }}"><p id="cn" style="color:red;"></p></th>
+</tr>
+<tr>
+	<th>Street Address</th>
+	<th><input id="street" type="text" name="streetaddress" value="{{ street }}"><p></p></th>
+</tr>
+<tr>
+	<th>State</th>
+	<th><input id="state" type="text" name="state" value="{{ state }}"><p></p></th>
+</tr>
+<tr>
+	<th>Country</th>
+	<th><input id="country" type="text" name="country" value="{{ country }}"><p></p></th>
+</tr>
+<tr>
+	<th>Pin Code</th>
+	<th><input id="pin" type="text" name="pincode" value="{{ pin }}"><p></p></th>
+</tr>
+<tr>
+	<th>Work Status</th>
+	<th><input id="work" type="text" name="workstat" value="{{ work }}"><p></p></th>
+
+</tr>
+<tr>
+	<th>Education</th>
+        <th><input id="education" type="text" name="education" value="{{ edu }}"><p></p></th>
+</tr>
+<tr>
+	<th>Skill set</th>
+	<th><input id="skillset" type="text" name="skillset" value="{{ skill }}"><p></p></th>
+
+</tr>
+<tr>
+	<th>Experience</th>
+	<th><input id="experience" type="text" name="workexperience" value="{{ exp }}"><p></p></th>
+</tr>
+    </table>
+
+    <p align="center">
+    <input type="submit" name="submit"  id="submit" onclick="return validate()">
+    </p>
+
+</form>
+<script>
+    function validate(){
+    var last=document.getElementById("last").value;
+    var llen=last.length;
+    var contact=document.getElementById("contact").value;
+    var clen=contact.length;
+
+    if(!(last && contact)){
+        var msg="Please provide Last Name!!!";
+        var msg1="Please provide Contact Number!!!";
+        document.getElementById("ln").innerHTML=msg;
+
+        document.getElementById("cn").innerHTML=msg1;
+        return false;
+        }
+	else{
+        return true;
+        }
+        }
+</script>
+
+</body>
+</html>

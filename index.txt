@@ -1,0 +1,48 @@
+{% load static %}
+
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload resumae</title>
+
+    <style>
+    body{
+      background-image:url("/static/image/resumefirst.jpg");
+      background-repeat:no-repet;
+      background-attachment:fixed;
+      background-size:100% 100%;
+
+      }
+    </style>
+</head>
+<body>
+		<center>
+		<br><br><br><br>
+		<h1>WELCOME TO RESUME PARSER<br></h1>
+		<h1 style="font:courier"></h1>
+		<br><br><br><br>
+		<p><font size=4>UPLOAD YOUR RESUMAE TO PARSE</font></p>
+		<form action="parse" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+			<input type="file" id="myfile" name="filename">
+			<input type="Submit" onclick="return filevalidation()">
+		</form>
+		</center>
+<script>
+	function filevalidation(){
+	var file=document.getElementById('myfile').value;
+	var allowedextension=/(\.docx)$/i;
+	if(!allowedextension.exec(file)){
+		alert('Invalid file type!!! \n Please choose .docx file type!!!');
+		return false;
+	}
+	else{
+
+		return true;
+		}
+	}
+</script>
+	</body>
+</html>
+

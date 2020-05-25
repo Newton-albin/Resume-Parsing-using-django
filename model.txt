@@ -1,0 +1,22 @@
+from django.db import models
+from django.core.validators import MinValueValidator,MaxValueValidator
+
+
+# Create your models here.
+class Applied(models.Model):
+    firstname=models.CharField(max_length=100)
+    lastname=models.CharField(max_length=100)
+    email=models.EmailField()
+    phone=models.CharField(max_length=10)
+    street=models.TextField()
+    state=models.CharField(max_length=25)
+    country=models.CharField(max_length=25)
+    pin=models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(8)])
+    workstatus=models.CharField(max_length=100)
+    education=models.CharField(max_length=100)
+    skill=models.CharField(max_length=100)
+    experience=models.CharField(max_length=100)
+
+    class Meta:
+        db_table='applied resumae'
+
